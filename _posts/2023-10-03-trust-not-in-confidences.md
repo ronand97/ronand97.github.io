@@ -73,6 +73,7 @@ and finally consider we have let some rogue engineer loose on our coin and it no
 | Edge4 | 5%          |
 
 As we add more possibilities the probability pool gets diluted. The same thinking can be extended to a multi-class classification machine learning model. In an ideal world, each predictable class is fully separable from the next, and any incoming data point will have a prediction made that is 100% probability belonging to one class. In reality, data is usually not so separable and other classes often hold some finite probability. Consider you have a multiclass classification model that can predict 50 classes. The output of `predict_proba` could look like:
+
 | Class   | Probability |
 |---------|-------------|
 | Class1  | 51%         |
