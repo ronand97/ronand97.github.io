@@ -1,2 +1,2 @@
-# What is this?
-Ronan's Random Ramblings.
+# ronand97.github.io
+Personal website.
