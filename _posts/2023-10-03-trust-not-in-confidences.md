@@ -100,17 +100,12 @@ Example labels for this data could include:
 
 The way you design your labels could make the probabilities harder to interpret. You could concatenate them all together (`"Animal_Dog_Labrador"`) and train one model to predict all levels, but that seems a bit silly. It makes more sense to have a model per-level. However, this can cause issues. Consider the following predict_proba outputs for L1 and L2 (the line of thinking is easily extended to L3):
 
-<table>
-<tr><th>Level 1 Predictions</th><th>Level 2 predictions</th></tr>
-<tr><td>
-
 | L1     | Probability |
 |--------|-------------|
 | Human | 95%         |
 | Animal  | 4%          |
 | Object | 1%          |
 
-</td><td>
 
 | L2       | Probability |
 |----------|-------------|
@@ -118,12 +113,8 @@ The way you design your labels could make the probabilities harder to interpret.
 | Scottish      | 10%         |
 | Cat | 2%          |
 | Dog  | 8%          |
-| ..       | ..          ||b|1|2|3| 
-|--|--|--|--|
-|a|s|d|f|
+| ..       | ..          ||
 
-</td>
-</tr> </table>
 
 We see that the obvious prediction from L1 is `Human`. However the L2 probability for `English` is slightly less at 80%, because partially it couldn't decide whether or not it was also potentially a `Cat`, `Scottish` or `Dog` (no insulting implications intended, I just chose a crap example...). We can just return 80% right? Well you could, but we know that it's not possible for `L1==Human` and `L2==Dog`. So we are actually underselling the probability/confidence of our L2 prediction. And what if our models went haywire and predicted a wrong combination? We can use our knowledge of the "allowed" category combinations across L1-L3 to restrict both the predictable categories and proportionally re-distribute the magnitude of the probability between the other allowed categories.
 
